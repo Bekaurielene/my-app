@@ -1,54 +1,54 @@
-import UserCard from "./Components/UserCard";
+import { useState } from "react";
+import ProductCard from "./components/ProductCard";
 
 function App() {
-  const users = [
+  const [cartCount, setCartCount] = useState(0);
+
+  const products = [
     {
       id: 1,
-      name: "Giorgi",
-      age: 25,
-      role: "Admin",
-      skills: ["React", "JavaScript", "CSS"],
-      photo: "https://picsum.photos/200?random=1",
+      title: "iPhone 15",
+      price: 3000,
+      category: "Electronics",
     },
     {
       id: 2,
-      name: "Nika",
-      age: 22,
-      role: "User",
-      skills: ["HTML", "CSS"],
-      photo: "https://picsum.photos/200?random=2",
+      title: "T-Shirt",
+      price: 50,
+      category: "Clothing",
     },
     {
       id: 3,
-      name: "Luka",
-      age: 28,
-      role: "Admin",
-      skills: ["C++", "Java"],
-      photo: "https://picsum.photos/200?random=3",
+      title: "Laptop",
+      price: 4500,
+      category: "Electronics",
     },
     {
       id: 4,
-      name: "Ana",
-      age: 20,
-      role: "User",
-      skills: ["React", "Figma"],
-      photo: "https://picsum.photos/200?random=4",
+      title: "Shoes",
+      price: 200,
+      category: "Clothing",
     },
   ];
 
+  function addToCart() {
+    setCartCount(cartCount + 1);
+  }
+
   return (
-    <div className="container">
-      {users.map((user) => (
-        <UserCard
-          key={user.id}
-          name={user.name}
-          age={user.age}
-          role={user.role}
-          skills={user.skills}
-          photo={user.photo}
+    <>
+      <h1>კალათა: {cartCount} ნივთი</h1>
+
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          title={product.title}
+          price={product.price}
+          category={product.category}
+          addToCart={addToCart}
         />
       ))}
-    </div>
+    </>
   );
 }
 
