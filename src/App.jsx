@@ -1,54 +1,59 @@
-import { useState } from "react";
-import ProductCard from "./components/ProductCard";
+import { useEffect, useState } from "react";
+import "./App.css";
+import LiveTracker from "./components/LiveTrackerg";
+
+const citiesData = [
+  { id: 1, name: "თბილისი", temp: 25, condition: "მზიანი" },
+  { id: 2, name: "ბათუმი", temp: 22, condition: "წვიმიანი" },
+  { id: 3, name: "ქუთაისი", temp: 24, condition: "ღრუბლიანი" }
+];
 
 function App() {
-  const [cartCount, setCartCount] = useState(0);
+  const [activeCity, setActiveCity] = useState(citiesData[0]);
+  const [isLive, setIsLive] = useState(false);
 
-  const products = [
-    {
-      id: 1,
-      title: "iPhone 15",
-      price: 3000,
-      category: "Electronics",
-    },
-    {
-      id: 2,
-      title: "T-Shirt",
-      price: 50,
-      category: "Clothing",
-    },
-    {
-      id: 3,
-      title: "Laptop",
-      price: 4500,
-      category: "Electronics",
-    },
-    {
-      id: 4,
-      title: "Shoes",
-      price: 200,
-      category: "Clothing",
-    },
-  ];
+  useEffect(() => {
+    console.log("ამინდის აპლიკაცია წარმატებით ჩაიტვირთა!");
+  }, []);
 
-  function addToCart() {
-    setCartCount(cartCount + 1);
+  useEffect(() => {
+    document.title = `ამინდი: ${activeCity.name}`;
+  }, [activeCity]);
+
+  function toggleLive() {
+    setIsLive(!isLive);
   }
 
   return (
-    <>
-      <h1>კალათა: {cartCount} ნივთი</h1>
+    <div className="container">
+      <div className="weather-box">
+        <h1>ამინდის აპლიკაცია</h1>
 
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          title={product.title}
-          price={product.price}
-          category={product.category}
-          addToCart={addToCart}
-        />
-      ))}
-    </>
+        <div className="city-buttons">
+          {citiesData.map((city) => (
+            <button
+              key={city.id}
+              className="city-btn"
+              onClick={() => setActiveCity(city)}
+            >
+              {city.name}
+            </button>
+          ))}
+        </div>
+
+        <div className="city-info">
+          <h2>{activeCity.name}</h2>
+          <p>ტემპერატურა: {activeCity.temp}°C</p>
+          <p>ამინდი: {activeCity.condition}</p>
+        </div>
+
+        <button className="live-btn" onClick={toggleLive}>
+          {isLive ? "გათიშე Live რეჟიმი" : "ჩართე Live რეჟიმი"}
+        </button>
+
+        {isLive ? <LiveTracker /> : null}
+      </div>
+    </div>
   );
 }
 

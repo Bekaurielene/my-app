@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .weather-box {
+    width: 400px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    text-align: center;
+  }
+  
+  .city-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .city-btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: skyblue;
+    cursor: pointer;
+  }
+  
+  .city-info {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .live-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: lightgreen;
+    cursor: pointer;
+  }
+  
+  .live-text {
+    margin-top: 15px;
+    font-weight: bold;
+  }
